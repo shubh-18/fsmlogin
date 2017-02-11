@@ -41,7 +41,7 @@ def makeWebhookResult(req):
  cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
   
-if(cost[id])==pass:
+if(cost[id]==pass):
   speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
 
   
