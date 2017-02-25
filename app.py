@@ -30,7 +30,8 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") == "user.id":
+    if req.get("result").get("action") != "user.id":
+	return{}
     result = req.get("result")
     parameters = result.get("parameters")
     id1 = parameters.get("user-id")
@@ -39,20 +40,22 @@ def makeWebhookResult(req):
 	ip={'Suraj':192.168.1.0, 'Shubham':200, 'Raju':300, 'Yash':400, 'Ravi':500}
     if(str(cost[id1])==pass1):
         speech = id1 + ". You are Suceesfully login. Do you have any problem with our product."
-		muUrl = str(ip[id1])
-		ping=subprocess.Popen(["ping", myUrl], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, error=ping.communicate()
+	muUrl = str(ip[id1])
+	ping=subprocess.Popen(["ping", myUrl], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	out, error=ping.communicate()
+	out=str(out)
     else:
         speech = "Wrong credential"
 
     print("Response:")
     print(speech)
-	print(out)
+    print(out)
 
     return {
         "speech": speech,
         "displayText": speech,
-		"out": out,
+        "out": out,
+	"displayText": out,
         #"data": {},
         # "contextOut": [],
         "source": "apiai-onlinestore-shipping"
