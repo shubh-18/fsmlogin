@@ -3,6 +3,8 @@
 import urllib
 import json
 import os
+import subprocess
+import re
 
 from flask import Flask
 from flask import request
@@ -28,24 +30,29 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "user.id":
-        return {}
+    if req.get("result").get("action") == "user.id":
     result = req.get("result")
     parameters = result.get("parameters")
     id1 = parameters.get("user-id")
     pass1 = parameters.get("password")
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+    cost = {'Suraj':100, 'Shubham':200, 'Raju':300, 'Yash':400, 'Ravi':500}
+	ip={'Suraj':192.168.1.0, 'Shubham':200, 'Raju':300, 'Yash':400, 'Ravi':500}
     if(str(cost[id1])==pass1):
-        speech = "The cost of shipping to " + id1 + " is " + str(cost[id1]) + " euros."
+        speech = id1 + ". You are Suceesfully login. Do you have any problem with our product."
+		muUrl = str(ip[id1])
+		ping=subprocess.Popen(["ping", myUrl], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		out, error=ping.communicate()
     else:
-        speech = "error"
-    
+        speech = "Wrong credential"
+
     print("Response:")
     print(speech)
+	print(out)
 
     return {
         "speech": speech,
         "displayText": speech,
+		"out": out,
         #"data": {},
         # "contextOut": [],
         "source": "apiai-onlinestore-shipping"
