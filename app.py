@@ -40,7 +40,7 @@ def makeWebhookResult(req):
 	ip={'Suraj':'google.com', 'Shubham':'youtube.com', 'Raju':'facebook.com', 'Yash':'yahoo.com', 'Ravi':500}
     	if(str(cost[id1])==pass1):
         	speech = id1 + ". You are Suceesfully login. Do you have any problem with our product."
-		myUrl = str(ip[id1])
+		myUrl = ip[id1]
 		ping=subprocess.Popen(["ping", myUrl], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, error=ping.communicate()
 		out=str(out)
