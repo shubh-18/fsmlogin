@@ -44,18 +44,16 @@ def makeWebhookResult(req):
 		ping=subprocess.Popen(["ping", myUrl], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, error=ping.communicate()
 		out=str(out)
+		speech = speech + out
     	else:
         	speech = "Wrong credential"
 
     	print("Response:")
     	print(speech)
-    	print(out)
 
     	return {
         	"speech": speech,
         	"displayText": speech,
-        	"out": out,
-		"displayText": out,
         #"data": {},
         # "contextOut": [],
         	"source": "apiai-onlinestore-shipping"
